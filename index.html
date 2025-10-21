@@ -15,6 +15,7 @@
       --dark: #2c3e50;
       --gray: #7f8c8d;
       --white: #ffffff;
+      
       --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       --transition: all 0.3s ease;
     }
@@ -273,6 +274,31 @@
       background: var(--white);
     }
     
+    .category-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    
+    .filter-btn {
+      background: var(--light);
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+    
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -418,6 +444,22 @@
     
     .gallery-item:hover .gallery-overlay {
       transform: translateY(0);
+    }
+    
+    /* Mappa */
+    .map-container {
+      width: 100%;
+      height: 450px;
+      margin: 2rem 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
     
     /* Contatti */
@@ -653,6 +695,10 @@
       .btn-light {
         margin-left: 0;
       }
+      
+      .map-container {
+        height: 350px;
+      }
     }
     
     @media (max-width: 576px) {
@@ -671,7 +717,10 @@
       .contact-form {
         padding: 1.5rem;
       }
-    
+      
+      .map-container {
+        height: 300px;
+      }
     }
   </style>
 </head>
@@ -697,7 +746,7 @@
   <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-content">
-      <h1>Macchine per cucire </h1>
+      <h1>Macchine per cucire</h1>
       <p>Scopri la nostra vasta gamma di macchine da cucito e accessori di alta qualità</p>
       <div class="btn-container">
         <a href="#prodotti" class="btn">Scopri i prodotti</a>
@@ -713,10 +762,10 @@
     </div>
     <div class="about">
       <div class="about-content">
-        <h3>Il tuo negozio di fiducia per macchine da cucito</h3>
-        <p>Da oltre 15 anni, siamo il punto di riferimento ad Ancona per gli appassionati di cucito e professionisti del settore. Offriamo una vasta selezione di macchine da cucito, accessori e tutto il necessario per il tuo hobby o lavoro.</p>
-        <p>Il nostro team di esperti è sempre a disposizione per consigliarti il prodotto più adatto alle tue esigenze e offrirti assistenza post-vendita di qualità.</p>
-        <p>Visita il nostro negozio per provare le macchine e scoprire le ultime novità del settore.</p>
+       <h3>La tua destinazione di fiducia per macchine per cucire</h3>
+<p>Da oltre 35 anni, siamo il punto di riferimento ad Ancona per appassionati di cucito e professionisti del settore. Nel nostro negozio trovi un'ampia selezione di macchine per cucire, accessori e strumenti di alta qualità per ogni esigenza, dall'hobby alla produzione professionale.</p>
+<p>Il nostro team di esperti è sempre a tua disposizione per aiutarti a scegliere la macchina per cucire più adatta alle tue necessità, garantendo anche un servizio di assistenza post-vendita competente e affidabile.</p>
+<p>Ti aspettiamo in negozio per provare le macchine per cucire di ultima generazione e scoprire tutte le novità del mondo del cucito.</p>
       </div>
       <div class="about-img">
         <img src="img2.jpg" alt="Interno del nostro negozio">
@@ -728,112 +777,185 @@
   <section class="products" id="prodotti">
     <div class="section-header">
       <h2>I Nostri Prodotti</h2>
-      <p>Scopri la nostra selezione di macchine da cucito e accessori</p>
+      <p>Scopri la nostra selezione di macchine per cucire</p>
     </div>
-    <div class="products-grid">
-      <div class="product-card">
-        <div class="product-img">
-          <img src="https://tse2.mm.bing.net/th/id/OIP.lMp_mhpbIA64RbuRehRbKwHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Macchina da cucito professionale">
-        </div>
-        <div class="product-info">
-          <h3>Janome 1522 Macchina blu </h3>
-          <ul class="product-features">
-            <li><i class="fas fa-check"></i> Infila ago automatico: semplifica il processo di infilatura dell'ago, risparmiando tempo e fatica.</li>
-            <li><i class="fas fa-check"></i> Dotato di 22 punti incorporati, tra cui punti utili, elastici, decorativi e a zigzag</li>
-            <li><i class="fas fa-check"></i> Sistema a 7 feed: garantisce un trasporto uniforme del tessuto per cuciture precise e uniformi.</li>
-          </ul>
-          <a href="#contatti" class="btn">Richiedi informazioni</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">
-          <img src="https://coudreetbroder.com/45256-thickbox_default/bernina-990.jpg" alt="Macchina da cucito domestica">
-        </div>
-        <div class="product-info">
-          <h3>Bernina B990 </h3>
-          <ul class="product-features">
-            <li><i class="fas fa-check"></i> La superficie di ricamo è di 41 x 30,5</li>
-            <li><i class="fas fa-check"></i> Dotata di un innovativo puntatore laser, la Bernina 990</li>
-            <li><i class="fas fa-check"></i> L'infilatore di aghi automatico ed elettronico semplifica il processo di preparazione.</li>
-          </ul>
-          <a href="#contatti" class="btn">Richiedi informazioni</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">
-          <img src="https://th.bing.com/th/id/R.e1088be863f1f6689f6215ae69b99395?rik=mzqUduNTMTMAuw&pid=ImgRaw&r=0" alt="Macchina da cucito overlock">
-        </div>
-        <div class="product-info">
-          <h3>ME457 ELITE - Singer</h3>
-          <ul class="product-features">
-            <li><i class="fas fa-check"></i> 32 punti - punti base, decorativi o flessibil</li>
-            <li><i class="fas fa-check"></i>automatica Velocità di cucitura fino a 1100 punti al minuto</li>
-            <li><i class="fas fa-check"></i>Braccio libero Copertina morbida</li>
-          
-          </ul>
-          <a href="#contatti" class="btn">Richiedi informazioni</a>
-        </div>
-      </div>
-    </div>
-  </section>
-    <section class="products" id="prodotti">
-    <div class="section-header">
-  
-    </div>
-    <div class="products-grid">
-      <div class="product-card">
-        <div class="product-img">
-          <img src="https://pfaffsa.co.za/wp-content/uploads/2024/04/Example_-_admire-air-1000-open-close_2x-1.png" alt="Macchina da cucito professionale">
-        </div>
-        <div class="product-info">
-          <h3>Ammira la macchina tagliacuci Air 1000 </h3>
-          <ul class="product-features">
-            <li><i class="fas fa-check"></i> La tagliacuci PFAFF admire 1000</li>
-            <li><i class="fas fa-check"></i> Capacità di filo 4/3/2 16 punti diversi per cucire cuciture</li>
-            <li><i class="fas fa-check"></i> Finiture delle cuciture, cuciture e bordi decorativi</li>
-          </ul>
-          <a href="#contatti" class="btn">Richiedi informazioni</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">
-          <img src="https://media.rainpos.com/10966/0dec70c3c042609a68e0c818d5947017562f1db8_6b47896a_ab57_481f_85e3_868c5345f72a.jpeg" alt="Macchina da cucito domestica">
-        </div>
-        <div class="product-info">
-          <h3> Pfaff Ambition 620 </h3>
-          <ul class="product-features">
-            <li><i class="fas fa-check"></i> Pfaff Ambition 620 è progettata per essere facile da usare</li>
-            <li><i class="fas fa-check"></i> 136 punti - Lasciati stupire dall'affascinante selezione di punti di alta qualità Pfaff</li>
-            <li><i class="fas fa-check"></i>  Lo schermo LCD chiaro completano i 2 caratteri di cucito e i punti programmabili.</li>
-          </ul>
-          <a href="#contatti" class="btn">Richiedi informazioni</a>
-        </div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/EcLEI8XYmEw?si=mTbkhC9ICDV9g0ne" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="product-card">
-        <div class="product-img">
-          <img src="https://th.bing.com/th/id/R.2e576aef56d75852638d40ff6c3d3fe2?rik=6bcu4yTkUE%2fJZA&pid=ImgRaw&r=0" alt="Macchina da cucito overlock">
-        </div>
-        <div class="product-info">
-          <h3> Janome 3300 </h3>
-          <ul class="product-features">
-            <li><i class="fas fa-check"></i> Crochet oscillante.</li>
-            <li><i class="fas fa-check"></i> 12 tipi di punti.</li>
-            <li><i class="fas fa-check"></i> Asola automatiche in quattro tempi.</li>
-            
-          </ul>
-          <a href="#contatti" class="btn">Richiedi informazioni</a>
-        </div>
-      </div>
-    </div>
-  </section>
-    <section class="products" id="prodotti">
-    <div class="section-header">
-
     
+    <!-- Filtri per categoria -->
+    <div class="category-filters">
+      <button class="filter-btn active" data-category="tutti">Tutti</button>
+      <button class="filter-btn" data-category="cucito-ricamo">Cucito/Ricamo</button>
+      <button class="filter-btn" data-category="tagliacuci">Tagliacuci</button>
+      <button class="filter-btn" data-category="accessori">Accessori</button>
+    </div>
+    
+    <div class="products-grid">
+      <!-- Cucito/Ricamo -->
+      <div class="product-card" data-category="cucito-ricamo">
+        <div class="product-img">
+          <img src="https://tse2.mm.bing.net/th/id/OIP.lMp_mhpbIA64RbuRehRbKwHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Macchina da cucito Janome 1522">
+        </div>
+        <div class="product-info">
+          <h3>Janome 1522 – Macchina per cucire Blu</h3>
+          <p>Macchina meccanica moderna, ideale per uso domestico. Design colorato e funzionale, perfetto per ogni tipo di progetto di cucito.</p>
+          <ul class="product-features">
+            <li><i class="fas fa-check"></i> 22 punti di cucito integrati</li>
+            <li><i class="fas fa-check"></i> Occhiello automatico a 1 passo</li>
+            <li><i class="fas fa-check"></i> Crochet oscillante verticale per cuciture precise</li>
+            <li><i class="fas fa-check"></i> Infilatore ago automatico</li>
+          </ul>
+          <a href="#contatti" class="btn">Richiedi informazioni</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="cucito-ricamo">
+        <div class="product-img">
+          <img src="https://coudreetbroder.com/45256-thickbox_default/bernina-990.jpg" alt="Macchina da cucito Bernina B990">
+        </div>
+        <div class="product-info">
+          <h3>Bernina B990 – Macchina per cucire e ricamare</h3>
+          <p>La Bernina B990 combina innovazione, potenza e precisione svizzera per offrirti un'esperienza di cucito e ricamo senza compromessi.</p>
+          <ul class="product-features">
+            <li><i class="fas fa-check"></i> Area di ricamo extra-large: 41 x 30,5 cm</li>
+            <li><i class="fas fa-check"></i> Puntatore laser per posizionamento preciso</li>
+            <li><i class="fas fa-check"></i> Touchscreen grande e intuitivo</li>
+            <li><i class="fas fa-check"></i> Motore potente e silenzioso</li>
+          </ul>
+          <a href="#contatti" class="btn">Richiedi informazioni</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="cucito-ricamo">
+        <div class="product-img">
+          <img src="https://th.bing.com/th/id/R.e1088be863f1f6689f6215ae69b99395?rik=mzqUduNTMTMAuw&pid=ImgRaw&r=0" alt="Macchina da cucito Singer ME457">
+        </div>
+        <div class="product-info">
+          <h3>Singer ME457 ELITE – Macchina per cucire meccanica</h3>
+          <p>La Singer ME457 ELITE è una macchina robusta e veloce, ideale per chi cerca prestazioni elevate con semplicità d'uso.</p>
+          <ul class="product-features">
+            <li><i class="fas fa-check"></i> 32 punti: utili, decorativi e flessibili</li>
+            <li><i class="fas fa-check"></i> Velocità di cucitura fino a 1.100 punti al minuto</li>
+            <li><i class="fas fa-check"></i> Funzionamento automatico con comandi intuitivi</li>
+            <li><i class="fas fa-check"></i> Braccio libero per cuciture tubolari</li>
+          </ul>
+          <a href="#contatti" class="btn">Richiedi informazioni</a>
+        </div>
+      </div>
+      
+      <!-- Tagliacuci -->
+      <div class="product-card" data-category="tagliacuci">
+        <div class="product-img">
+          <img src="https://pfaffsa.co.za/wp-content/uploads/2024/04/Example_-_admire-air-1000-open-close_2x-1.png" alt="Tagliacuci PFAFF admire air 1000">
+        </div>
+        <div class="product-info">
+          <h3>PFAFF admire™ air 1000 – Tagliacuci a infilatura ad aria</h3>
+          <p>La PFAFF admire™ air 1000 è una tagliacuci affidabile con infilatura ad aria, progettata per offrire cuciture perfette, finiture professionali e massima semplicità d'uso.</p>
+          <ul class="product-features">
+            <li><i class="fas fa-check"></i> Infilatura ad aria dei crochet per cambio filo facile e veloce</li>
+            <li><i class="fas fa-check"></i> Utilizzo con 4, 3 o 2 fili</li>
+            <li><i class="fas fa-check"></i> 16 punti diversi per cuciture e finiture professionali</li>
+            <li><i class="fas fa-check"></i> Regolazione automatica della tensione del filo</li>
+          </ul>
+          <a href="#contatti" class="btn">Richiedi informazioni</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="tagliacuci">
+        <div class="product-img">
+          <img src="https://sosmachinesacoudre.fr/wp-content/uploads/2020/10/bernette_b48_2_sos-machines-a-coudre.jpg" alt="Macchina da cucito Pfaff Ambition 620">
+        </div>
+        <div class="product-info">
+          <h3>Bernette 48</h3>
+          <p>La bernette 48, il modello di punta della serie Funlock, combina un taglia e cuci e una macchina per punto copertura. Comprende un totale di 23 punti: 15 punti overlock, 3 punti copertura, 4 punti combinati e 1 punto a catenella.</p>
+          <ul class="product-features">
+            <li><i class="fas fa-check"></i> Cucitura di sicurezza a 5 fili </li>
+            <li><i class="fas fa-check"></i> Punti ampi combinati: fino a 10 mm </li>
+            <li><i class="fas fa-check"></i> Velocità di cucitura fino a 1.300 punti/minuto</li>
+            <li><i class="fas fa-check"></i> Cuciture a 2, 3, 4 e 5 fili</li>
+          </ul>
+          <a href="#contatti" class="btn">Richiedi informazioni</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="cucito-ricamo">
+        <div class="product-img">
+          <img src="https://th.bing.com/th/id/R.2e576aef56d75852638d40ff6c3d3fe2?rik=6bcu4yTkUE%2fJZA&pid=ImgRaw&r=0" alt="Macchina da cucito Janome 3300">
+        </div>
+        <div class="product-info">
+          <h3>Janome 3300</h3>
+          <p>Macchina da cucito versatile con caratteristiche avanzate per progetti creativi.</p>
+          <ul class="product-features">
+            <li><i class="fas fa-check"></i> Crochet oscillante per un'alimentazione precisa del tessuto</li>
+            <li><i class="fas fa-check"></i> 14 tipi di punti: punti utili, elasticizzati e decorativi</li>
+            <li><i class="fas fa-check"></i> Asola automatica in quattro tempi per finiture professionali</li>
+            <li><i class="fas fa-check"></i> Regolazione della lunghezza del punto fino a 4 mm</li>
+          </ul>
+          <a href="#contatti" class="btn">Richiedi informazioni</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="cucito-ricamo">
+        <div class="product-img">
+          <img src="https://www.melanns.com.au/wp-content/uploads/Screenshot-2022-06-10-110905.jpg" alt="Bernina 570">
+        </div>
+        <div class="product-info">
+          <h3>Bernina 570</h3>
+          <p>Macchina da cucito elettronica di alta qualità con funzioni avanzate.</p>
+          <ul class="product-features">
+            <li><i class="fas fa-check"></i> 197 punti di cucito</li>
+            <li><i class="fas fa-check"></i> Sistema BSR per il quilting perfetto</li>
+            <li><i class="fas fa-check"></i> Touchscreen da 5 pollici</li>
+            <li><i class="fas fa-check"></i> Doppio trasporto integrato</li>
+          </ul>
+          <a href="#contatti" class="btn">Richiedi informazioni</a>
+        </div>
+      </div>
+      
+      <!-- Altri modelli per Tagliacuci -->
+      <div class="product-card" data-category="tagliacuci">
+        <div class="product-img">
+          <img src="https://tse3.mm.bing.net/th/id/OIP.Tl_2pAKtklLoSfC3HUcX3gHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Bernina 890">
+        </div>
+        <div class="product-info">
+          <h3>Bernina 890</h3>
+          <p>L'infilatrice ad aria BERNINA in un solo passaggio
+Infilatura della macchina per via aerea
+Posizione corretta automatica delle pinze
+Infilare in modo divertente</p>
+          <ul class="product-features">
+            <li><i class="fas fa-check"></i> Sistema di taglio differenziale</li>
+            <li><i class="fas fa-check"></i> Infilatura automatica</li>
+            <li><i class="fas fa-check"></i> 2-3-4-5 fili</li>
+            <li><i class="fas fa-check"></i> Luci LED integrate</li>
+          </ul>
+          <a href="#contatti" class="btn">Richiedi informazioni</a>
+        </div>
+      </div>
+      
+      <!-- Accessori -->
+      <div class="product-card" data-category="accessori">
+        <div class="product-img">
+        
+        </div>
+        <div class="product-info">
+          <h3>Set Accessori Completo</h3>
+          <p>Tutto ciò che ti serve per i tuoi progetti di cucito in un unico set.</p>
+          <ul class="product-features">
+            <li><i class="fas fa-check"></i> Piedini speciali per diverse tecniche</li>
+            <li><i class="fas fa-check"></i> Aghi di diverse misure</li>
+            <li><i class="fas fa-check"></i> Bobine extra</li>
+            <li><i class="fas fa-check"></i> Kit di pulizia e manutenzione</li>
+          </ul>
+          <a href="#contatti" class="btn">Richiedi informazioni</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Servizi -->
   <section id="servizi">
     <div class="section-header">
+      <h2>I Nostri Servizi</h2>
+      <p>Oltre alla vendita, offriamo servizi completi per il tuo cucito</p>
     </div>
     <div class="services-grid">
       <div class="service-card">
@@ -912,12 +1034,22 @@
       </div>
     </div>
   </section>
-  <h1 align="center"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.41505826395!2d13.501243075560263!3d43.59789887110476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d7f8737c4321f%3A0x24a3a872f3dbe30!2sVia%20A.%20Maggini%2C%2072%2C%2060127%20Ancona%20AN!5e0!3m2!1sfr!2sit!4v1760907754619!5m2!1sfr!2sit" width="300px" height="350px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></h1>
+
+  <!-- Mappa -->
+  <section class="map-section">
+    <div class="section-header">
+      <h2>Dove Siamo</h2>
+      <p>Vieni a trovarci nel nostro negozio di Ancona</p>
+    </div>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.41505826395!2d13.501243075560263!3d43.59789887110476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d7f8737c4321f%3A0x24a3a872f3dbe30!2sVia%20A.%20Maggini%2C%2072%2C%2060127%20Ancona%20AN!5e0!3m2!1sfr!2sit!4v1760907754619!5m2!1sfr!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
 
   <!-- Contatti -->
   <section class="contact" id="contatti">
     <div class="section-header">
-      <h2> Contattaci </h2>
+      <h2>Contattaci</h2>
       <p>Vieni a trovarci in negozio o richiedi informazioni</p>
     </div>
     <div class="contact-container">
@@ -937,7 +1069,7 @@
           </div>
           <div class="contact-details">
             <h4>Telefono</h4>
-            <p> 071 280 0188</p>
+            <p>071 280 0188</p>
           </div>
         </div>
         <div class="contact-item">
@@ -945,7 +1077,7 @@
             <i class="fas fa-envelope"></i>
           </div>
           <div class="contact-details">
-            <h4> Email </h4>
+            <h4>Email</h4>
             <p>nonsolocucito@yahoo.it</p>
           </div>
         </div>
@@ -955,11 +1087,36 @@
           </div>
           <div class="contact-details">
             <h4>Orari di Apertura</h4>
-            <p>lunedì : 16:00-19:00 . / Martedì - venerdì  : 09:30-13:00 . / 16:00-19:00 .<br>Sabato: 9:30-13:00 .<br>domenica : Chiusu .</p>
+            <p>Lunedì: 16:00-19:00<br>Martedì - Venerdì: 09:30-13:00 / 16:00-19:00<br>Sabato: 9:30-13:00<br>Domenica: Chiuso</p>
           </div>
         </div>
       </div>
       
+      <div class="contact-form">
+        <h3>Inviaci un messaggio</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Nome e Cognome</label>
+            <input type="text" id="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input type="tel" id="phone" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="message">Messaggio</label>
+            <textarea id="message" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn">Invia Messaggio</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer>
     <div class="footer-content">
@@ -968,7 +1125,8 @@
         <p>Il tuo negozio di fiducia per macchine da cucito e accessori ad Ancona.</p>
         <div class="social-links">
           <a href="https://www.facebook.com/nonsolocucitoancona/"><i class="fab fa-facebook-f"></i></a>
-         
+            <a href="  https://www.instagram.com/nonsolocucitoancona/"><i class="fab fa-instagram"></i></a>
+      
         </div>
       </div>
       <div class="footer-col">
@@ -983,19 +1141,19 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Prodotti</h4>
+        <h4>Categorie Prodotti</h4>
         <ul class="footer-links">
-          <li><a href="#prodotti">Macchine Professionali</a></li>
-          <li><a href="#prodotti">Macchine Domestiche</a></li>
-          <li><a href="#prodotti">Overlock</a></li>
-          <li><a href="#prodotti">Accessori</a></li>
+          <li><a href="#prodotti" data-filter="cucito-ricamo">Cucito/Ricamo</a></li>
+          <li><a href="#prodotti" data-filter="tagliacuci">Tagliacuci</a></li>
+          <li><a href="#prodotti" data-filter="accessori">Accessori</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contatti</h4>
         <ul class="footer-links">
           <li><i class="fas fa-map-marker-alt"></i> Via Maggini,72, Ancona, Italia</li>
-          <li><i class="fas fa-phone"></i> +39  071 280 0188</li>
+          <li><i class="fas fa-phone"></i> +39 071 280 0188</li>
+          <li><i class="fas fa-envelope"></i> nonsolocucito@yahoo.it</li>
         </ul>
       </div>
     </div>
@@ -1054,6 +1212,51 @@
       alert('Grazie per il tuo messaggio! Ti contatteremo presto.');
       contactForm.reset();
     });
+    
+    // Filtri prodotti per categoria
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Rimuovi classe active da tutti i bottoni
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Aggiungi classe active al bottone cliccato
+        button.classList.add('active');
+        
+        const category = button.getAttribute('data-category');
+        
+        // Mostra/nascondi prodotti in base alla categoria
+        productCards.forEach(card => {
+          if (category === 'tutti' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Filtri prodotti dal footer
+    const footerLinks = document.querySelectorAll('.footer-links a[data-filter]');
+    
+    footerLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const filter = link.getAttribute('data-filter');
+        
+        // Attiva il filtro corrispondente
+        filterButtons.forEach(button => {
+          if (button.getAttribute('data-category') === filter) {
+            button.click();
+          }
+        });
+        
+        // Scorri alla sezione prodotti
+        document.getElementById('prodotti').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
   </script>
 </body>
 </html>
+
