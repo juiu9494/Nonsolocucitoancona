@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nonsolocucitoancona - Macchine da Cucito & Accessori</title>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* Reset e variabili */
     :root {
@@ -36,6 +39,62 @@
       color: var(--dark);
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    /* Loading Screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+
+    .loading-content {
+      text-align: center;
+      color: var(--dark);
+    }
+
+    .loading-logo {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 0.5s;
+    }
+
+    .loading-text {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 1s;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--light);
+      border-top: 4px solid var(--secondary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
     /* Tipografia */
@@ -446,6 +505,89 @@
       transform: translateY(0);
     }
     
+    /* Avis - Swiper */
+    .reviews {
+      background: var(--white);
+    }
+
+    .testimonials-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+      padding: 20px 0 40px;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .review-card {
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      border-left: 4px solid var(--primary);
+      text-align: left;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      border-left-color: var(--secondary);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .reviewer {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .review-date {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .review-content {
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .review-stars {
+      color: #ffc107;
+    }
+
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background-color: var(--secondary);
+      opacity: 0.3;
+      transition: var(--transition);
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+    
     /* Mappa */
     .map-container {
       width: 100%;
@@ -619,6 +761,37 @@
       font-size: 0.9rem;
       color: #aaa;
     }
+
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--secondary);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 99;
+    }
+
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
     
     /* Animazioni */
     @keyframes fadeUp {
@@ -725,6 +898,15 @@
   </style>
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">nonsolocucitoancona</div>
+      <div class="loading-text">Preparando il tuo angolo di creatività...</div>
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+
   <!-- Header -->
   <header id="header">
     <div class="logo">nonsolo<span>cucito</span>ancona</div>
@@ -763,13 +945,112 @@
     <div class="about">
       <div class="about-content">
        <h3> Nonsolocucito </h3>
-<p>Da oltre 35 anni, siamo il punto di riferimento ad Ancona per appassionati di cucito del settore. Nel nostro negozio trovi un'ampia selezione di macchine per cucire, accessori e strumenti di alta qualità.</p>
-<p>Il nostro team è sempre a tua disposizione per aiutarti a scegliere la macchina per cucire più adatta alle tue necessità, garantendo anche un servizio di assistenza post-vendita competente e affidabile.</p>
-<p>Ti aspettiamo in negozio per provare le macchine per cucire di ultima generazione e scoprire tutte le novità del mondo del cucito.</p>
+<p>Da oltre 35 anni, Nonsolocucito è il punto di riferimento ad Ancona per tutti gli appassionati di cucito, dai principianti ai professionisti del settore. Nel nostro negozio trovi un'ampia selezione di macchine per cucire, accessori e strumenti di alta qualità, scelti tra i migliori marchi.</p>
+
+<p>Ti aiutiamo a scegliere la macchina per cucire più adatta alle tue esigenze e offriamo un'assistenza sempre disponibile e competente.</p>
+
+<p>Ti aspettiamo in negozio per provare le macchine per cucire di ultima generazione e scoprire tutte le novità del mondo del cucito. Vieni a trovarci e lasciati ispirare dalla nostra passione per il cucito!</p>
+
       </div>
       <div class="about-img">
-        <img src="img2.jpg" alt="Interno del nostro negozio">
+        <img src="entrata 2.jpg" alt="Interno del nostro negozio">
       </div>
+    </div>
+  </section>
+
+  <!-- Avis -->
+  <section class="reviews" id="reviews">
+    <div class="section-header">
+      <h2>Cosa Dicono i Nostri Clienti</h2>
+      <p>Scopri le esperienze di chi ha già scelto i nostri prodotti e servizi</p>
+    </div>
+
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer">Enrico Lucchetti</div>
+              <div class="review-date"></div>
+            </div>
+            <div class="review-content">
+              Ho portato a riparare la mia vecchia Singer 7146, che dire? Tempi di riparazione rapidissimi e prezzi ragionevoli. Cortesia, simpatia ed esperienza... Cosa chiedere di più! Negozio consigliatissimo 😍
+            </div>
+            <div class="review-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer">Marco Matteucci</div>
+              <div class="review-date"></div>
+            </div>
+            <div class="review-content">
+              Francesca è davvero preparata e molto capace, abbiamo comprato una macchina da cucire e ci siamo trovati bene, ci ha incantato con la sua preparazione e la sua passione! Un negozio dove potete fare anche corsi di cucito e trovare ciò di cui avete bisogno per le vostre necessità. Stra consigliatissimo.
+            </div>
+            <div class="review-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer">Luca Di Gioia</div>
+              <div class="review-date"></div>
+            </div>
+            <div class="review-content">
+              Francesca, proprietaria cortese, competente e sempre disponibile.
+            </div>
+            <div class="review-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer">Liana Giuliani</div>
+              <div class="review-date"></div>
+            </div>
+            <div class="review-content">
+              Mi ha consigliato in numerosi acquisti (da un manichino sartoriale sino ad una rotella da taglio) con grande cura e premura. Per acquisti di settore, lei rimane - e rimarrà - il mio punto di riferimento. Al primo posto metterei affidabilità, ma anche competenza. Assistenza direi 'a vita', continue novità. Un posto dove è soddisfacente comprare ma anche dove è stimolante imparare tecniche e conoscere persone con gli stessi interessi attorno al mondo del cucito e del ricamo.
+            </div>
+            <div class="review-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination (points) -->
+      <div class="swiper-pagination"></div>
     </div>
   </section>
 
@@ -785,7 +1066,7 @@
       <button class="filter-btn active" data-category="tutti">Tutti</button>
       <button class="filter-btn" data-category="cucito-ricamo">Cucito/Ricamo</button>
       <button class="filter-btn" data-category="tagliacuci">Tagliacuci</button>
-      <button class="filter-btn" data-category="accessori">Accessori</button>
+   
     </div>
     
     <div class="products-grid">
@@ -795,9 +1076,17 @@
           <img src="https://tse2.mm.bing.net/th/id/OIP.lMp_mhpbIA64RbuRehRbKwHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Macchina da cucito Janome 1522">
         </div>
         <div class="product-info">
-          <h3>Janome 1522 Blu</h3>
+         <h3>Janome 1522 Blu</h3>
+<p>La Janome 1522 Blu unisce design moderno, solidità e semplicità d'uso, rendendola perfetta sia per chi si avvicina al cucito che per chi cerca una macchina affidabile per lavori creativi e sartoriali.</p>
+
+<p>Dotata di una robusta struttura in metallo, offre 22 punti di cucitura, inclusi punti utili, elastici e decorativi. La regolazione della lunghezza e della larghezza del punto permette la massima precisione su ogni tessuto, dal più leggero al più spesso.</p>
+
+<p>La leva per la retromarcia, l'infilatura facilitata e il braccio libero rendono ogni progetto più pratico e piacevole. Il suo design in colore blu dona un tocco di stile al tuo angolo di cucito.</p>
+
+<p>Scopri Janome 1522 Blu: una macchina resistente, versatile e intuitiva, pensata per accompagnarti in ogni creazione.</p>
+
           
-          <a href="https://www.janomeshop.it/prodotto/1522-blu/" class="btn">Scopri di più</a>
+       
         </div>
       </div>
       
@@ -806,8 +1095,15 @@
           <img src="https://coudreetbroder.com/45256-thickbox_default/bernina-990.jpg" alt="Macchina da cucito Bernina B990">
         </div>
         <div class="product-info">
-          <h3> Bernina B990 </h3>
-          <a href="https://www.bernina.com/nl-NL/Machines-NL/Serieoverzicht/BERNINA-9-serie/BERNINA-990" class="btn">Scopri di più</a>
+    <h3>Bernina B990</h3>
+<p>La Bernina B990 rappresenta l'eccellenza assoluta nel mondo delle macchine per cucire e ricamare. Progettata per offrire prestazioni professionali, combina potenza, precisione e tecnologia all'avanguardia in un design raffinato e intuitivo.</p>
+
+<p>Dotata di un ampio schermo touch ad alta risoluzione, la B990 permette di gestire con facilità tutte le funzioni di cucito, quilting e ricamo. Offre una velocità di cucitura eccezionale, punti perfetti su qualsiasi tessuto e un'ampia gamma di punti decorativi e alfabeti integrati.</p>
+
+<p>Grazie al braccio extra lungo, al doppio trasporto BERNINA Dual Feed e al sistema di infilatura automatica, ogni progetto diventa più rapido e preciso. È la scelta ideale per chi desidera la massima qualità senza compromessi.</p>
+
+<p>Scopri la Bernina B990: tecnologia svizzera, eleganza e prestazioni superiori per dare forma a ogni tua idea creativa.</p>
+
         </div>
       </div>
       
@@ -817,7 +1113,14 @@
         </div>
         <div class="product-info">
           <h3>Singer ME457 ELITE</h3>
-          <a href="https://www.singerfrance.com/15-nos-machines" class="btn">Scopri di più</a>
+<p>La Singer ME457 ELITE è una macchina per cucire potente e versatile, pensata per chi desidera unire praticità, prestazioni e durata nel tempo. Ideale sia per principianti ambiziosi che per appassionati esperti, offre risultati professionali su qualsiasi tipo di tessuto.</p>
+
+<p>Con 32 punti di cucitura, inclusi punti utili, elastici e decorativi, consente di realizzare con facilità orli, rifiniture e progetti creativi. La struttura interna interamente in metallo garantisce stabilità e resistenza, mentre il motore potenziato assicura una cucitura fluida anche sui tessuti più spessi.</p>
+
+<p>Tra le sue caratteristiche più apprezzate troviamo la regolazione della lunghezza e della larghezza del punto, il braccio libero per cuciture tubolari e l'infilatura automatica dell'ago, che semplifica il lavoro e fa risparmiare tempo.</p>
+
+<p>Singer ME457 ELITE: affidabilità, potenza e precisione firmate Singer, per dare forma a ogni tua idea creativa con facilità e stile.</p>
+
         </div>
       </div>
       
@@ -827,8 +1130,15 @@
           <img src="https://pfaffsa.co.za/wp-content/uploads/2024/04/Example_-_admire-air-1000-open-close_2x-1.png" alt="Tagliacuci PFAFF admire air 1000">
         </div>
         <div class="product-info">
-          <h3>PFAFF admire™ air 1000 </h3>
-          <a href="https://www.pfaff-france.com/15-nos-machines" class="btn">Scopri di più</a>
+       <h3>PFAFF admire™ air 1000</h3>
+<p>La PFAFF admire™ air 1000 è una tagliacuci moderna e intuitiva, progettata per offrire cuciture professionali con la massima semplicità. Perfetta per rifinire bordi, creare orli e cucire tessuti elasticizzati, unisce potenza, precisione e praticità d'uso.</p>
+
+<p>Grazie al sistema di infilatura ad aria "One-Touch Air Threading", infilare il crochet diventa un gesto rapido e senza stress. Il passaggio da un punto all'altro è fluido, mentre le impostazioni regolabili di taglio, lunghezza e larghezza permettono di personalizzare ogni cucitura.</p>
+
+<p>La struttura robusta, il trasporto potente e l'illuminazione LED rendono la admire™ air 1000 ideale per chi desidera finiture impeccabili e un'esperienza di cucito confortevole.</p>
+
+<p>PFAFF admire™ air 1000: tutta la qualità tedesca in una tagliacuci affidabile, precisa e facile da usare, per risultati sempre professionali.</p>
+
         </div>
       </div>
       
@@ -837,9 +1147,15 @@
           <img src="https://www.bernina-france.fr/wp-content/uploads/2021/10/BERNETTE_B48_2.jpg" alt="Macchina da cucito Pfaff Ambition 620">
         </div>
         <div class="product-info">
-          <h3>Bernette 48</h3>
-          
-          <a href="https://www.bernette.com/fr-FR/modeles/bernette-48-funlock" class="btn">Scopri di più</a>
+         <h3>Bernette 48</h3>
+<p>La Bernette 48 è una macchina combinata overlock e coverlock che offre la massima versatilità per tutte le esigenze di cucito creativo. Con 23 punti integrati, consente di realizzare cuciture professionali, rifiniture pulite e orli elastici su una vasta gamma di tessuti.</p>
+
+<p>Il sistema di infilatura semplificato a colori, la regolazione differenziale del trasporto e la possibilità di regolare la lunghezza e la larghezza del punto garantiscono risultati sempre perfetti. Il potente motore e la struttura robusta assicurano una cucitura stabile e uniforme anche sui materiali più spessi.</p>
+
+<p>Grazie all'illuminazione LED e al comodo braccio libero, ogni progetto diventa più preciso e piacevole da realizzare. La Bernette 48 combina qualità svizzera, affidabilità e semplicità d'uso in un'unica macchina dalle prestazioni eccezionali.</p>
+
+<p>Perfetta per chi desidera una tagliacuci e una coverlock in un solo strumento, la Bernette 48 è la scelta ideale per risultati sempre professionali.</p>
+
         </div>
       </div>
       
@@ -849,8 +1165,14 @@
         </div>
         <div class="product-info">
           <h3>Janome 3300</h3>
-          
-          <a href="https://www.janome.fr/recherche?controller=search&s=Janome+3300" class="btn">Scopri di più</a>
+<p>La Janome 3300 è una macchina per cucire affidabile, semplice da usare e ideale per chi desidera qualità e praticità in un unico modello. Perfetta per principianti e appassionati, offre tutte le funzioni essenziali per realizzare cuciture precise e creative.</p>
+
+<p>Dotata di 14 punti di cucitura, inclusi punti utili, elastici e per asole automatiche in quattro fasi, consente di affrontare con facilità diversi tipi di tessuti, dal cotone al jeans. La struttura interna in metallo garantisce stabilità e lunga durata.</p>
+
+<p>Il braccio libero facilita la cucitura di maniche, pantaloni e capi tubolari, mentre l'infilatura semplice e l'illuminazione LED rendono il lavoro confortevole e preciso.</p>
+
+<p>Janome 3300: la macchina perfetta per chi cerca semplicità, robustezza e risultati sempre impeccabili in ogni progetto di cucito.</p>
+
         </div>
       </div>
       
@@ -859,9 +1181,13 @@
           <img src="https://www.melanns.com.au/wp-content/uploads/Screenshot-2022-06-10-110905.jpg" alt="Bernina 570">
         </div>
         <div class="product-info">
-          <h3>Bernina 570</h3>
-         
-          <a href="https://www.bernina.com/nl-NL/Machines-NL" class="btn">Scopri di più</a>
+        <h3>Bernina 570</h3>
+<p>La Bernina 570 è una macchina per cucire e ricamare di alta gamma, progettata per offrire prestazioni professionali e massima precisione. Ideale per chi desidera unire creatività e tecnologia avanzata, consente di realizzare progetti complessi con facilità.</p>
+
+<p>Dotata di un ampio schermo touch, una vasta gamma di punti decorativi, alfabeti integrati e funzioni di ricamo avanzate, la 570 offre un'esperienza di cucito completa e personalizzabile. Il sistema BERNINA Dual Feed garantisce una perfetta alimentazione dei tessuti, anche i più difficili.</p>
+
+<p>Grazie al braccio extra lungo e alle molteplici funzioni automatiche, ogni cucitura diventa semplice e precisa. La Bernina 570 è la scelta ideale per chi cerca qualità svizzera, affidabilità e innovazione per ogni progetto creativo.</p>
+
         </div>
       </div>
       
@@ -872,26 +1198,12 @@
         </div>
         <div class="product-info">
           <h3>Bernina 890</h3>
-         
-          <a href="https://www.bernina.com/nl-NL/Machines-NL/Overlockers/Overlocker-Coversteek-combo/BERNINA-L-890" class="btn">Scopri di più</a>
-        </div>
-      </div>
-      
-      <!-- Accessori -->
-      <div class="product-card" data-category="accessori">
-        <div class="product-img">
-        
-        </div>
-        <div class="product-info">
-          <h3>Set Accessori Completo</h3>
-          <p>Tutto ciò che ti serve per i tuoi progetti di cucito in un unico set.</p>
-          <ul class="product-features">
-            <li><i class="fas fa-check"></i> Piedini speciali per diverse tecniche</li>
-            <li><i class="fas fa-check"></i> Aghi di diverse misure</li>
-            <li><i class="fas fa-check"></i> Bobine extra</li>
-            <li><i class="fas fa-check"></i> Kit di pulizia e manutenzione</li>
-          </ul>
-          <a href="#contatti" class="btn">Richiedi informazioni</a>
+<p>La Bernina 890 è la macchina da cucire e ricamare di punta della linea Bernina, progettata per offrire prestazioni eccezionali e precisione senza compromessi. Ideale per professionisti e appassionati esigenti, combina tecnologia avanzata, facilità d'uso e una vasta gamma di funzioni innovative.</p>
+
+<p>Dotata di un ampio schermo touch ad alta risoluzione, oltre 1.000 punti decorativi, alfabeti multipli e funzioni di ricamo professionale, permette di creare progetti unici con dettagli impeccabili. Il sistema BERNINA Dual Feed assicura un'alimentazione uniforme di qualsiasi tessuto, garantendo risultati perfetti anche su materiali difficili.</p>
+
+<p>Con un braccio extra lungo, molteplici accessori e funzioni automatiche all'avanguardia, la Bernina 890 trasforma ogni idea creativa in realtà con precisione e stile svizzero.</p>
+
         </div>
       </div>
     </div>
@@ -906,17 +1218,17 @@
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">
-          <i class="fas fa-tools"></i>
-        </div>
-        <h3>Assistenza e Riparazioni</h3>
-        <p>Servizio di manutenzione e riparazione per tutte le marche di macchine da cucito.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
           <i class="fas fa-graduation-cap"></i>
         </div>
         <h3>Corsi di Formazione</h3>
         <p>Lezioni individuali e di gruppo per imparare a usare al meglio la tua macchina.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h3>Riparazioni</h3>
+        <p>Servizio di riparazione professionale per tutte le marche di macchine da cucire.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">
@@ -955,7 +1267,7 @@
         </div>
       </div>
       <div class="gallery-item">
-        <img src="img3.jpg" alt="Macchina professionale">
+        <img src="https://scontent.fcia3-1.fna.fbcdn.net/v/t51.75761-15/504163181_18282505924264163_1696484552402471947_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=dA47-3K3pocQ7kNvwFk1CDq&_nc_oc=Adkn6RxM5BltKhp3kSrH29vtDOoyG30jIIiAG6KlAkyD7uKJ4CPNeQtT4wiJAuYFuk4&_nc_zt=23&_nc_ht=scontent.fcia3-1.fna&_nc_gid=rr5cn9BO6S0plKnAORIWpw&oh=00_Afc6mQX4qaTNBsJ26aprLZ3gJwJCQ5BfiAYnUQktqp8uNA&oe=690036BD" alt="Macchina professionale">
         <div class="gallery-overlay">
           <h4>Modello Professionale</h4>
         </div>
@@ -1009,6 +1321,262 @@
             <p>Via Maggini,72 <br>Ancona, 60127, Italia</p>
           </div>
         </div>
-</html>
-     
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Telefono</h4>
+            <p>071 280 0188</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Email</h4>
+            <p>nonsolocucito@yahoo.it</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="contact-details">
+            <p><strong>Orari di apertura:</strong></p>
+<ul>
+  <li><strong>Lunedì:</strong> 16:00 – 19:00</li>
+  <li><strong>Martedì:</strong> 09:30 – 19:00</li>
+  <li><strong>Mercoledì:</strong> 09:30 – 19:00</li>
+  <li><strong>Giovedì:</strong> 09:30 – 19:00</li>
+  <li><strong>Venerdì:</strong> 09:30 – 13:00 / 16:00 – 19:00</li>
+  <li><strong>Sabato:</strong> 09:30 – 13:00</li>
+  <li><strong>Domenica:</strong> Chiuso</li>
+</ul>
 
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h3>Inviaci un messaggio</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Nome e Cognome</label>
+            <input type="text" id="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input type="tel" id="phone" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="message">Messaggio</label>
+            <textarea id="message" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn">Invia Messaggio</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+      
+        <div class="social-links">
+          <a href="https://www.facebook.com/nonsolocucitoancona/"><i class="fab fa-facebook-f"></i></a>
+            <a href="  https://www.instagram.com/nonsolocucitoancona/"><i class="fab fa-instagram"></i></a>
+      
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Link Rapidi</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#chi-siamo">Chi Siamo</a></li>
+          <li><a href="#prodotti">Prodotti</a></li>
+          <li><a href="#servizi">Servizi</a></li>
+          <li><a href="#galleria">Galleria</a></li>
+          <li><a href="#reviews">Avis</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Categorie Prodotti</h4>
+        <ul class="footer-links">
+          <li><a href="#prodotti" data-filter="cucito-ricamo">Cucito/Ricamo</a></li>
+          <li><a href="#prodotti" data-filter="tagliacuci">Tagliacuci</a></li>
+          <li><a href="#prodotti" data-filter="accessori">Accessori</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contatti</h4>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt"></i> Via Maggini,72, Ancona, Italia</li>
+          <li><i class="fas fa-phone"></i> +39 071 280 0188</li>
+          <li><i class="fas fa-envelope"></i> nonsolocucito@yahoo.it</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 nonsolocucitoancona. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    // Loading Screen
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loading-screen').style.opacity = '0';
+        setTimeout(function() {
+          document.getElementById('loading-screen').style.display = 'none';
+        }, 800);
+      }, 1500);
+    });
+
+    // Menu mobile
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('nav ul');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Animazione sezioni al scroll
+    const sections = document.querySelectorAll('section');
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+    
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Grazie per il tuo messaggio! Ti contatteremo presto.');
+      contactForm.reset();
+    });
+    
+    // Filtri prodotti per categoria
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Rimuovi classe active da tutti i bottoni
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Aggiungi classe active al bottone cliccato
+        button.classList.add('active');
+        
+        const category = button.getAttribute('data-category');
+        
+        // Mostra/nascondi prodotti in base alla categoria
+        productCards.forEach(card => {
+          if (category === 'tutti' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Filtri prodotti dal footer
+    const footerLinks = document.querySelectorAll('.footer-links a[data-filter]');
+    
+    footerLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const filter = link.getAttribute('data-filter');
+        
+        // Attiva il filtro corrispondente
+        filterButtons.forEach(button => {
+          if (button.getAttribute('data-category') === filter) {
+            button.click();
+          }
+        });
+        
+        // Scorri alla sezione prodotti
+        document.getElementById('prodotti').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Initialize Swiper
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+
+    // Back to top button
+    const backToTopBtn = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('active');
+      } else {
+        backToTopBtn.classList.remove('active');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>
